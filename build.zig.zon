@@ -1,0 +1,11 @@
+.{
+    .name = "GameDev",
+    .version = "1.0.0",
+    .paths = .{ "src", "deps" },
+    .dependencies = .{
+        .rlimgui = .{
+            .path = "src/deps/zgui/rlImGui",
+        },
+        .zgui = .{ .path = "src/deps/zgui" },
+    },
+}
