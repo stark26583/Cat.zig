@@ -110,15 +110,15 @@ pub fn create_executable(
     cat.addIncludePath(rlimgui.path("."));
     cat.addIncludePath(.{ .cwd_relative = "src/deps/zgui/libs/imgui" });
 
-    if (use_cp) {
-        const cp_module = b.createModule(.{
+    const cp_module = b.createModule(.{
             .root_source_file = .{ .cwd_relative = "src/deps/chipmunk/chipmunk.zig" },
             .target = target,
             .optimize = optimize,
         });
-        cat.addImport("cp", cp_module);
-        // cat.addIncludePath(.{ .cwd_relative = "src/deps/chipmunk/c/include/" });
-        // cp.link(cat);
+    cat.addImport("cp", cp_module);
+    cat.addIncludePath(.{ .cwd_relative = "src/deps/chipmunk/c/include/" });
+
+    if (use_cp) {
         cp.link(exe);
     }
     exe.root_module.addImport("cat", cat);
